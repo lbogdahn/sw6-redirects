@@ -5,6 +5,7 @@ namespace RuneLaenen\Redirects\Subscriber;
 use RuneLaenen\Redirects\Content\Redirect\RedirectEntity;
 use Shopware\Core\Framework\Adapter\Cache\CacheCompressor;
 use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldSerializer\JsonFieldSerializer;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
@@ -21,15 +22,15 @@ class RequestSubscriber implements EventSubscriberInterface
 {
     private const TAG_KEY = 'rl_redirects_cache';
 
-    private EntityRepositoryInterface $redirectRepository;
+    private EntityRepository $redirectRepository;
 
-    private EntityRepositoryInterface $seoUrlRepository;
+    private EntityRepository $seoUrlRepository;
 
     private TagAwareAdapterInterface $cache;
 
     public function __construct(
-        EntityRepositoryInterface $redirectRepository,
-        EntityRepositoryInterface $seoUrlRepository,
+        EntityRepository $redirectRepository,
+        EntityRepository $seoUrlRepository,
         TagAwareAdapterInterface $cache
     ) {
         $this->redirectRepository = $redirectRepository;
